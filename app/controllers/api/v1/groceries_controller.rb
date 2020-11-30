@@ -5,6 +5,15 @@ class Api::V1::GroceriesController < ApplicationController
     render json: @groceries
   end
 
+  def create
+    note = Grocery.new(grocery_params) 
+      if grocery.save
+        render json: grocery, status: :accepted
+      else
+          render json: {errors: grocery.errors.full_messages}
+        end    
+    end
+
   def update
     @grocery.update(grocery_params)
     if @grocery.save

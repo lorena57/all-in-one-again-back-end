@@ -5,6 +5,15 @@ class Api::V1::ContactsController < ApplicationController
     render json: @contacts
   end
 
+  def create
+    note = Contact.new(contact_params) 
+      if contact.save
+        render json: contact, status: :accepted
+      else
+          render json: {errors: contact.errors.full_messages}
+        end    
+    end  
+
   def update
     @contact.update(contact_params)
     if @contact.save
