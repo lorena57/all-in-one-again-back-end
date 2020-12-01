@@ -6,13 +6,13 @@ class Api::V1::ContactsController < ApplicationController
   end
 
   def create
-    note = Contact.new(contact_params) 
+    contact = Contact.new(contact_params) 
       if contact.save
         render json: contact, status: :accepted
       else
           render json: {errors: contact.errors.full_messages}
         end    
-    end  
+    end
 
   def update
     @contact.update(contact_params)
@@ -28,6 +28,5 @@ class Api::V1::ContactsController < ApplicationController
   def contact_params
     params.permit(:first_name, :last_name, :email_address, :phone_number)
   end
-
 
 end
