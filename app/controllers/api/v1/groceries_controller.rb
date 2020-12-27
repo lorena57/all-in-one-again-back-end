@@ -23,6 +23,11 @@ class Api::V1::GroceriesController < ApplicationController
     end
   end
 
+  def destroy
+    grocery = Grocery.find(params["id"])
+    grocery.destroy
+  end
+
   private
 
   def grocery_params
